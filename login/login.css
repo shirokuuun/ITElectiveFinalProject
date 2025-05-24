@@ -1,0 +1,103 @@
+/* login.css */
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  height: 100vh;
+  background: #fff;
+}
+
+.login-container {
+  display: flex;
+  width: 100%;
+}
+
+/* Left panel with gradient and text */
+.login-container::before {
+  content: "";
+  flex: 1;
+  background: linear-gradient(to right, #f7921e, #ffa726);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.login-container::before {
+  content: "🔥 Sched-Ease.\A Welcome to Easier Schedules!";
+  white-space: pre;
+}
+
+/* Right side form */
+form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.input-group {
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 300px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  background-color: #f9f9f9;
+  outline: none;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(to right, #f7921e, #ff6d00);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(to right, #ff6d00, #f7921e);
+}
+
+.register-link {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.register-link a {
+  color: #f7921e;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
