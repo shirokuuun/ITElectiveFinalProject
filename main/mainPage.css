@@ -108,6 +108,24 @@ body {
   font-size: 14px;
 }
 
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f3f3f3;
+  margin: 5px 0;
+  padding: 8px 10px;
+  border-radius: 5px;
+}
+
+.task button {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  color: red;
+  cursor: pointer;
+}
+
 .add-task {
   background-color: #dfe4ea;
   text-align: center;

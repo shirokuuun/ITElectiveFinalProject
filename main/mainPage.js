@@ -1,0 +1,93 @@
+function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("collapsed");
+}
+
+let tasksData = {};
+
+function loadTasksFromServer() {
+  fetch("/tasks")
+    .then((res) => res.json())
+    .then((data) => {
+      tasksData = data;
+      renderTasks();
+      setupAddButtons();
+    })
+    .catch((err) => console.error("Failed to load tasks:", err));
+}
+
+function saveTasksToServer() {
+  fetch("/tasks", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(tasksData),
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error("Failed to save");
+    })
+    .catch((err) => console.error("Save error:", err));
+}
+
+// Create DOM element for each task
+function createTaskElement(phase, taskObj, index) {
+  const taskDiv = document.createElement("div");
+  taskDiv.className = "task";
+
+  const span = document.createElement("span");
+  span.textContent = taskObj.description;
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "✖";
+  deleteBtn.title = "Delete Task";
+  deleteBtn.style.marginLeft = "10px";
+  deleteBtn.style.cursor = "pointer";
+  deleteBtn.style.backgroundColor = "transparent";
+  deleteBtn.style.border = "none";
+  deleteBtn.style.color = "red";
+  deleteBtn.style.fontSize = "16px";
+
+  deleteBtn.addEventListener("click", () => {
+    tasksData[phase].splice(index, 1);
+    saveTasksToServer();
+    renderTasks();
+  });
+
+  taskDiv.appendChild(span);
+  taskDiv.appendChild(deleteBtn);
+  return taskDiv;
+}
+
+// Render tasks to the DOM
+function renderTasks() {
+  document.querySelectorAll(".column").forEach((column) => {
+    const phase = column.querySelector("h3").textContent;
+    const taskDivs = column.querySelectorAll(".task");
+    taskDivs.forEach((div) => div.remove()); // Clear existing
+
+    const tasks = tasksData[phase] || [];
+    tasks.forEach((task, index) => {
+      const taskElement = createTaskElement(phase, task, index);
+      column.appendChild(taskElement);
+    });
+  });
+}
+
+// Setup Add Task buttons
+function setupAddButtons() {
+  document.querySelectorAll(".column").forEach((column) => {
+    const button = column.querySelector(".add-task");
+    const phase = column.querySelector("h3").textContent;
+
+    button.addEventListener("click", () => {
+      const taskDescription = prompt(`Enter a new task for "${phase}":`);
+      if (taskDescription) {
+        if (!tasksData[phase]) tasksData[phase] = [];
+        tasksData[phase].push({ description: taskDescription });
+        saveTasksToServer();
+        renderTasks();
+      }
+    });
+  });
+}
+
+// Initial load
+loadTasksFromServer();

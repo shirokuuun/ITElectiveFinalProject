@@ -11,9 +11,9 @@
       <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
       <h2>Menu</h2>
       <ul>
-        <li><i>🏠</i><span>Tab 1</span></li>
+        <li><i>🏠</i><span>Home</span></li>
         <li><i>📄</i><span>Tab 2</span></li>
-        <li><i>⚙️</i><span>Tab 3</span></li>
+        <li><i>⚙️</i><span>Settings</span></li>
       </ul>
     </div>
 
@@ -21,44 +21,31 @@
       <div class="board">
         <div class="column">
           <h3>Initiating</h3>
-          <div class="task">Identify goals and objectives</div>
-          <div class="task">Develop strategies and plans</div>
-          <div class="add-task">+ Add task</div>
+          <button class="add-task">+ Add task</button>
         </div>
 
         <div class="column">
           <h3>Planning</h3>
-          <div class="task">Document Scope Management Plan</div>
-          <div class="task">Specify deliverables and criteria</div>
-          <div class="add-task">+ Add task</div>
+          <button class="add-task">+ Add task</button>
         </div>
 
         <div class="column">
           <h3>Executing</h3>
-          <div class="task">Review progress</div>
-          <div class="task">Assign responsibilities</div>
-          <div class="add-task">+ Add task</div>
+          <button class="add-task">+ Add task</button>
         </div>
 
         <div class="column">
           <h3>Monitoring</h3>
-          <div class="task">Report monthly status</div>
-          <div class="task">Conduct team reviews</div>
-          <div class="add-task">+ Add task</div>
+          <button class="add-task">+ Add task</button>
         </div>
 
         <div class="column">
           <h3>Closing</h3>
-          <div class="task">Summarize results and lessons</div>
-          <div class="add-task">+ Add task</div>
+          <button class="add-task">+ Add task</button>
         </div>
       </div>
     </div>
 
-    <script>
-      function toggleSidebar() {
-        document.getElementById("sidebar").classList.toggle("collapsed");
-      }
-    </script>
+    <script src="mainPage.js"></script>
   </body>
 </html>
