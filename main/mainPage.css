@@ -64,6 +64,11 @@ body {
   background-color: #57606f;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .toggle-btn {
   background-color: #1e272e;
   color: white;
@@ -98,6 +103,7 @@ body {
 .column h3 {
   font-size: 16px;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .task {

@@ -27,7 +27,6 @@ function saveTasksToServer() {
     .catch((err) => console.error("Save error:", err));
 }
 
-// Create DOM element for each task
 function createTaskElement(phase, taskObj, index) {
   const taskDiv = document.createElement("div");
   taskDiv.className = "task";
@@ -56,7 +55,6 @@ function createTaskElement(phase, taskObj, index) {
   return taskDiv;
 }
 
-// Render tasks to the DOM
 function renderTasks() {
   document.querySelectorAll(".column").forEach((column) => {
     const phase = column.querySelector("h3").textContent;
@@ -71,7 +69,6 @@ function renderTasks() {
   });
 }
 
-// Setup Add Task buttons
 function setupAddButtons() {
   document.querySelectorAll(".column").forEach((column) => {
     const button = column.querySelector(".add-task");
@@ -89,5 +86,4 @@ function setupAddButtons() {
   });
 }
 
-// Initial load
 loadTasksFromServer();
