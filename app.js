@@ -10,6 +10,13 @@ app.use(express.static("main"));
 app.use(express.static("register"));
 app.use(express.static("settings"));
 app.use(express.static("settings/profile"));
+app.use(express.static("dashboard"));
+app.use(express.static("notes"));
+app.use(express.static("notification"));
+app.use(express.static("calendar"));
+app.use(express.static("schedule"));
+
+
 app.use(express.json());
 
 // GET tasks
