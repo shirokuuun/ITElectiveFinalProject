@@ -9,18 +9,23 @@
   <body>
     <div class="sidebar" id="sidebar">
       <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
-      <h2>Menu</h2>
-      <ul>
-        <a href="mainPage.html">
-          <li><i>🏠</i><span>Home</span></li>
-        </a>
-        <a href="">
-          <li><i>📄</i><span>Documents</span></li>
-        </a>
-        <a href="">
-          <li><i>⚙️</i><span>Settings</span></li>
-        </a>
-      </ul>
+      <div class="sidebar-content">
+        <h2>Menu</h2>
+        <ul>
+          <a href="mainPage.html"
+            ><li><i>🏠</i><span>Home</span></li></a
+          >
+          <a href="#"
+            ><li><i>📄</i><span>Documents</span></li></a
+          >
+          <a href="settings.html"
+            ><li><i>⚙️</i><span>Settings</span></li></a
+          >
+        </ul>
+      </div>
+      <div class="sidebar-footer">
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </div>
     </div>
 
     <div class="main">
@@ -29,22 +34,18 @@
           <h3>Initiating</h3>
           <button class="add-task">+ Add task</button>
         </div>
-
         <div class="column">
           <h3>Planning</h3>
           <button class="add-task">+ Add task</button>
         </div>
-
         <div class="column">
           <h3>Executing</h3>
           <button class="add-task">+ Add task</button>
         </div>
-
         <div class="column">
           <h3>Monitoring</h3>
           <button class="add-task">+ Add task</button>
         </div>
-
         <div class="column">
           <h3>Closing</h3>
           <button class="add-task">+ Add task</button>

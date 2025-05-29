@@ -1,0 +1,134 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f6f6f6;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  width: 600px;
+  padding: 2rem;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.profile-header img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-info {
+  flex-grow: 1;
+  margin-left: 1rem;
+}
+
+.action-buttons button {
+  margin-left: 0.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.form-group-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.username-field {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.username-field .prefix {
+  padding: 0.6rem;
+  background-color: #eee;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.username-field input {
+  border: none;
+  flex-grow: 1;
+  padding: 0.6rem;
+  font-size: 1rem;
+}
+
+.photo-upload {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.photo-upload img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.photo-upload span {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #000;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #eee;
+  color: #333;
+}
+
+.btn-delete {
+  background-color: #ffe6e6;
+  color: #cc0000;
+}

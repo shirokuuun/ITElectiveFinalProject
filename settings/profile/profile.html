@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <link rel="stylesheet" href="profile.css" />
+  </head>
+  <body>
+    <div class="profile-card">
+      <div class="profile-header">
+        <img id="main-pic" src="default-profile.png" alt="User" />
+        <div class="profile-info">
+          <h2 id="display-name"></h2>
+          <p id="display-email"></p>
+        </div>
+        <div class="action-buttons">
+          <button class="btn-secondary" onclick="copyProfileLink()">
+            Copy link
+          </button>
+          <button class="btn-secondary">View profile</button>
+        </div>
+      </div>
+
+      <form id="profile-form">
+        <div class="form-group-row">
+          <div class="form-group">
+            <label for="firstName">Name</label>
+            <input type="text" id="firstName" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" />
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <div class="username-field">
+            <span class="prefix">yourapp.com/</span>
+            <input type="text" id="username" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Profile photo</label>
+          <div class="photo-upload">
+            <img id="preview" src="default-profile.png" alt="Profile preview" />
+            <input type="file" id="image-upload" accept="image/*" />
+            <span>Click to replace</span>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-delete" onclick="deleteUser()">
+            Delete user
+          </button>
+          <div>
+            <button
+              type="button"
+              class="btn-secondary"
+              onclick="window.location.reload()"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="btn-primary">Save changes</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script src="profile.js"></script>
+  </body>
+</html>

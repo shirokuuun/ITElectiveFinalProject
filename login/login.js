@@ -1,16 +1,26 @@
+// Load users.json into localStorage
+fetch("/users.json")
+  .then((response) => response.json())
+  .then((data) => {
+    localStorage.setItem("users", JSON.stringify(data));
+    console.log("Users loaded into localStorage.");
+  })
+  .catch((error) => {
+    console.error("Error loading users.json:", error);
+  });
+
 document.getElementById("loginForm").addEventListener("submit", function (e) {
   e.preventDefault();
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
 
-  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value.trim();
 
-  const user = users.find(
-    (u) => u.username === username && u.password === password
-  );
+  const users = JSON.parse(localStorage.getItem("users")) || {};
+  const user = users[username];
 
-  if (user) {
+  if (user && user.password === password) {
     alert("Login successful!");
+    localStorage.setItem("loggedInUser", username);
     window.location.href = "mainPage.html";
   } else {
     alert("Invalid username or password.");

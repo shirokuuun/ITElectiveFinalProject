@@ -8,6 +8,8 @@ const PORT = 3000;
 app.use(express.static("login"));
 app.use(express.static("main"));
 app.use(express.static("register"));
+app.use(express.static("settings"));
+app.use(express.static("settings/profile"));
 app.use(express.json());
 
 // GET tasks
@@ -39,4 +41,27 @@ app.get("/", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
+});
+
+// GET users.json
+app.get("/users.json", (req, res) => {
+  try {
+    const data = fs.readFileSync("users.json", "utf-8");
+    res.json(JSON.parse(data));
+  } catch (err) {
+    console.error("Failed to read users.json:", err);
+    res.status(500).json({ error: "Could not read users file" });
+  }
+});
+
+// POST to update users.json
+app.post("/users", (req, res) => {
+  try {
+    const users = req.body;
+    fs.writeFileSync("users.json", JSON.stringify(users, null, 2));
+    res.status(200).send("Users updated successfully.");
+  } catch (err) {
+    console.error("Failed to write users.json:", err);
+    res.status(500).json({ error: "Could not save users" });
+  }
 });

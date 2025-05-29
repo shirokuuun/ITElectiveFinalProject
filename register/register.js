@@ -2,18 +2,56 @@ document
   .getElementById("registerForm")
   .addEventListener("submit", function (e) {
     e.preventDefault();
-    const username = document.getElementById("newUsername").value;
-    const password = document.getElementById("newPassword").value;
 
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+    const firstName = document.getElementById("firstName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-    if (users.find((user) => user.username === username)) {
-      alert("Username already exists!");
+    if (!firstName || !email || !username || !password) {
+      alert("All fields are required.");
       return;
     }
 
-    users.push({ username, password });
-    localStorage.setItem("users", JSON.stringify(users));
-    alert("Registration successful! Go back to login.");
-    window.location.href = "login.html";
+    fetch("/users.json")
+      .then((response) => response.json())
+      .then((users) => {
+        // Check for existing username
+        if (users[username]) {
+          alert("Username already exists.");
+          throw new Error("Duplicate username");
+        }
+
+        // Add new user
+        users[username] = {
+          firstName,
+          email,
+          username,
+          password,
+          profileImage: "",
+        };
+
+        // Send updated users back to server
+        return fetch("/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(users),
+        });
+      })
+      .then((res) => {
+        if (res.ok) {
+          alert("Registration successful!");
+          window.location.href = "login.html";
+        } else {
+          throw new Error("Failed to save user");
+        }
+      })
+      .catch((error) => {
+        console.error("Registration error:", error.message);
+        if (error.message !== "Duplicate username") {
+          alert("Something went wrong. Please try again.");
+        }
+      });
   });
