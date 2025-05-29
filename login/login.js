@@ -21,7 +21,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
   if (user && user.password === password) {
     alert("Login successful!");
     localStorage.setItem("loggedInUser", username);
-    window.location.href = "mainPage.html";
+    window.location.href = "dashboard.html";
   } else {
     alert("Invalid username or password.");
   }
