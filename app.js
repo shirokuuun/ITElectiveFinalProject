@@ -4,71 +4,102 @@ const path = require("path");
 const app = express();
 const PORT = 3000;
 
-// Serve static files
-app.use(express.static("login"));
-app.use(express.static("main"));
-app.use(express.static("register"));
-app.use(express.static("settings"));
-app.use(express.static("settings/profile"));
-app.use(express.static("dashboard"));
-app.use(express.static("notes"));
-app.use(express.static("notification"));
-app.use(express.static("calendar"));
-app.use(express.static("schedule"));
-
-
 app.use(express.json());
 
-// GET tasks
-app.get("/tasks", (req, res) => {
-  try {
-    const data = fs.readFileSync("tasks.json", "utf-8");
-    res.json(JSON.parse(data));
-  } catch (err) {
-    console.error("Failed to read tasks.json:", err);
-    res.status(500).json({ error: "Could not read tasks file" });
-  }
-});
+// Serve static directories
+const staticDirs = [
+  "login", "main", "register", "settings", "settings/profile",
+  "dashboard", "notes", "notification", "calendar", "schedule"
+];
 
-// POST tasks
-app.post("/tasks", (req, res) => {
-  try {
-    fs.writeFileSync("tasks.json", JSON.stringify(req.body, null, 2));
-    res.status(200).send("Tasks saved");
-  } catch (err) {
-    console.error("Failed to write tasks.json:", err);
-    res.status(500).json({ error: "Could not save tasks" });
-  }
-});
+staticDirs.forEach(dir => app.use(express.static(dir)));
 
-// Home route serves login page
+// GET home page
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "login", "login.html"));
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+// GET tasks
+app.get("/tasks", (req, res) => {
+  readJsonFile("tasks.json", res);
 });
 
-// GET users.json
+// POST tasks
+app.post("/tasks", (req, res) => {
+  writeJsonFile("tasks.json", req.body, res, "Tasks saved");
+});
+
+// GET notes
+app.get("/notes", (req, res) => {
+  readJsonFile("notes.json", res);
+});
+
+// POST notes
+app.post("/notes", (req, res) => {
+  const data = req.body;
+  if (typeof data !== "object" || !data.notes) {
+    return res.status(400).json({ error: "Invalid notes format" });
+  }
+  writeJsonFile("notes.json", data, res, "Notes saved");
+});
+// GET calendar notes
+app.get("/calendar", (req, res) => {
+  readJsonFile("calendar.json", res);
+});
+
+// POST calendar notes
+app.post("/calendar", (req, res) => {
+  const data = req.body;
+  if (typeof data !== "object") {
+    return res.status(400).json({ error: "Invalid calendar data format" });
+  }
+  writeJsonFile("calendar.json", data, res, "Calendar notes saved");
+});
+
+
+// GET users
 app.get("/users.json", (req, res) => {
+  readJsonFile("users.json", res);
+});
+
+// POST users
+app.post("/users", (req, res) => {
+  writeJsonFile("users.json", req.body, res, "Users updated successfully");
+});
+
+// GET schedule
+app.get("/schedule", (req, res) => {
+  readJsonFile("schedule.json", res);
+});
+
+// POST schedule
+app.post("/schedule", (req, res) => {
+  writeJsonFile("schedule.json", req.body, res, "Schedule saved");
+});
+
+// Utility function to read JSON
+function readJsonFile(filename, res) {
   try {
-    const data = fs.readFileSync("users.json", "utf-8");
+    const data = fs.readFileSync(path.join(__dirname, filename), "utf-8");
     res.json(JSON.parse(data));
   } catch (err) {
-    console.error("Failed to read users.json:", err);
-    res.status(500).json({ error: "Could not read users file" });
+    console.error(`Failed to read ${filename}:`, err);
+    res.status(500).json({ error: `Could not read ${filename}` });
   }
-});
+}
 
-// POST to update users.json
-app.post("/users", (req, res) => {
+// Utility function to write JSON
+function writeJsonFile(filename, content, res, successMessage) {
   try {
-    const users = req.body;
-    fs.writeFileSync("users.json", JSON.stringify(users, null, 2));
-    res.status(200).send("Users updated successfully.");
+    fs.writeFileSync(path.join(__dirname, filename), JSON.stringify(content, null, 2));
+    res.status(200).send(successMessage);
   } catch (err) {
-    console.error("Failed to write users.json:", err);
-    res.status(500).json({ error: "Could not save users" });
+    console.error(`Failed to write ${filename}:`, err);
+    res.status(500).json({ error: `Could not save ${filename}` });
   }
+}
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });

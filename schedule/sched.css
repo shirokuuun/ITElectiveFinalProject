@@ -1,0 +1,213 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(to right, #e1f0ff, #f4e8ff);
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #2f3542;
+  color: white;
+  transition: width 0.3s;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.toggle-btn {
+  background-color: #1e272e;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.sidebar-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.sidebar h2 {
+  padding: 20px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.sidebar.collapsed h2 {
+  display: none;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  padding: 15px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar li span {
+  display: inline-block;
+}
+
+.sidebar.collapsed li span {
+  display: none;
+}
+
+.sidebar.collapsed li i {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.sidebar li:hover {
+  background-color: #57606f;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Footer Logout Button pinned to bottom */
+.sidebar-footer {
+  padding: 10px;
+}
+
+.logout-btn {
+  background-color: #ff4757;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+}
+
+.sidebar.collapsed .logout-btn {
+  padding: 10px;
+  font-size: 0;
+  position: relative;
+  height: 40px;
+}
+
+.sidebar.collapsed .logout-btn::before {
+  content: "🚪";
+  font-size: 20px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.main-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.page-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #2f3542;
+}
+
+/* Form */
+#schedule-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+#schedule-form input,
+#schedule-form button {
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+#schedule-form button {
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#schedule-form button:hover {
+  background-color: #0077cc;
+}
+
+/* Schedule list */
+#schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.schedule-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  border-left: 5px solid #1e90ff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.schedule-item div:first-child {
+  max-width: 70%;
+}
+
+.schedule-item button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.schedule-item .edit-btn:hover {
+  color: #ffa502;
+}
+
+.schedule-item .delete-btn:hover {
+  color: #ff4757;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #schedule-form {
+    flex-direction: column;
+  }
+
+  .schedule-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .schedule-item div:last-child {
+    margin-top: 10px;
+  }
+}

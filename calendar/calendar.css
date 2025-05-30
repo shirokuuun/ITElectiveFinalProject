@@ -1,0 +1,255 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(to right, #e1f0ff, #f4e8ff);
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #2f3542;
+  color: white;
+  transition: width 0.3s;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.toggle-btn {
+  background-color: #1e272e;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.sidebar-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.sidebar h2 {
+  padding: 20px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.sidebar.collapsed h2 {
+  display: none;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  padding: 15px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar li span {
+  display: inline-block;
+}
+
+.sidebar.collapsed li span {
+  display: none;
+}
+
+.sidebar.collapsed li i {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.sidebar li:hover {
+  background-color: #57606f;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Footer Logout Button pinned to bottom */
+.sidebar-footer {
+  padding: 10px;
+}
+
+.logout-btn {
+  background-color: #ff4757;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+}
+
+.sidebar.collapsed .logout-btn {
+  padding: 10px;
+  font-size: 0;
+  position: relative;
+  height: 40px;
+}
+
+.sidebar.collapsed .logout-btn::before {
+  content: "🚪";
+  font-size: 20px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+.page-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #2f3542;
+}
+
+.calendar-container {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 3000px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-header button {
+  background: #2f3542;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.calendar-header h3 {
+  margin: 0;
+  color: #2f3542;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.calendar-day {
+  background: #f1f2f6;
+  padding: 15px;
+  border-radius: 6px;
+  text-align: center;
+  color: #2f3542;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+}
+
+.calendar-day:hover {
+  background-color: #dcdde1;
+}
+
+.calendar-day.note {
+  background-color: #5661e3; /* light green background */
+  
+}
+
+.calendar-day.note::after {
+  content: "\1F4DD"; /* 📝 */
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 14px;
+}
+
+
+
+.calendar-weekday {
+  background: #dfe4ea;
+  font-weight: normal;
+}
+
+.calendar-day.empty {
+  background: transparent;
+  pointer-events: none;
+}
+
+/* Modal styles for adding notes */
+.note-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 1000;
+  max-width: 400px;
+  width: 100%;
+  display: none;
+}
+
+.note-modal.active {
+  display: block;
+}
+
+.note-modal textarea {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.note-modal button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.note-modal .save-btn {
+  background-color: #2ed573;
+  color: white;
+  margin-right: 10px;
+}
+
+.note-modal .cancel-btn {
+  background-color: #ff6b81;
+  color: white;
+}

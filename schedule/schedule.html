@@ -1,49 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Scheduler</title>
-    <link rel="stylesheet" href="mainPage.css" />
-  </head>
-  <body>
-    <div class="sidebar" id="sidebar">
-      <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
-      <div class="sidebar-content">
-        <h2>Menu</h2>
-        <ul>
-            <a href="dashboard.html"
-            ><li><i>🏠</i><span>dashboard</span></li></a
-          >
-          <a href="mainPage.html"
-            ><li><i>🏠</i><span>appointment</span></li></a
-          >
-          <a href="#"
-            ><li><i>📄</i><span>Documents</span></li></a
-          >
-          <a href="settings.html"
-            ><li><i>⚙️</i><span>Settings</span></li></a
-          ><a href="calendar.html"
-            ><li><i>🏠</i><span>calendar</span></li></a
-          >
-          <a href="schedule.html"
-            ><li><i>🏠</i><span>schedule</span></li></a
-          >
-          <a href="notification.html"
-            ><li><i>🏠</i><span>notifaction</span></li></a
-          >
-          <a href="notes.html"
-            ><li><i>🏠</i><span>notes</span></li></a
-          >
-        </ul>
-      </div>
-      <div class="sidebar-footer">
-        <button class="logout-btn" onclick="logout()">Logout</button>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Schedule</title>
+  <link rel="stylesheet" href="sched.css" />
+</head>
+<body>
+  <div class="sidebar" id="sidebar">
+    <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
+    <div class="sidebar-content">
+      <h2>Menu</h2>
+      <ul>
+        <a href="dashboard.html"><li><i>🏠</i><span>dashboard</span></li></a>
+        <a href="mainPage.html"><li><i>📅</i><span>appointment</span></li></a>
+        <a href="#"><li><i>📄</i><span>documents</span></li></a>
+        <a href="settings.html"><li><i>⚙️</i><span>settings</span></li></a>
+        <a href="calendar.html"><li><i>🗓️</i><span>calendar</span></li></a>
+        <a href="schedule.html"><li><i>⏰</i><span>schedule</span></li></a>
+        <a href="notification.html"><li><i>🔔</i><span>notifications</span></li></a>
+        <a href="notes.html"><li><i>📝</i><span>notes</span></li></a>
+      </ul>
     </div>
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
 
-   
+  <div class="main-content">
+    <h1 class="page-title">My Schedule</h1>
 
-    <script src="mainPage.js"></script>
-  </body>
+    <form id="schedule-form">
+  <input type="text" id="title" placeholder="Title" required />
+  <input type="date" id="date" required />
+  <input type="time" id="time" required />
+  <button type="submit">Add Schedule</button>
+</form>
+
+<div id="schedule-list"></div>
+  </div>
+
+  <script src="schedule.js"></script>
+</body>
 </html>
