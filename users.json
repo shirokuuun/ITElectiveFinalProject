@@ -1,7 +1,11 @@
 {
   "admin": {
     "password": "adminpass",
-    "isAdmin": true
+    "isAdmin": true,
+    "firstName": "Admin",
+    "email": "adminuser@gmail.com",
+    "username": "admin",
+    "profileImage": ""
   },
   "joelsantil": {
     "firstName": "Rensie",
