@@ -3,10 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="themes.css">
-
     <title>Admin</title>
     <link rel="stylesheet" href="admin.css" />
+    <link rel="stylesheet" href="themes.css" />
   </head>
   <body>
     <div class="sidebar" id="sidebar">
@@ -47,8 +46,14 @@
         <button class="logout-btn" onclick="logout()">Logout</button>
       </div>
     </div>
-  </body>
-  <script src="admin.js"></script>
-  <script src="theme.js"></script>
 
+    <div class="main-content">
+      <h1 class="page-title">Admin</h1>
+      <div id="usersContainer">
+        <button onclick="getAllUsers()">Get all users</button>
+      </div>
+    </div>
+
+    <script src="admin.js"></script>
+  </body>
 </html>

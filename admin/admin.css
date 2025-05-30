@@ -118,3 +118,23 @@ a {
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
+.main-content {
+  padding: 20px;
+  width: 100%;
+}
+
+#usersContainer {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+}
+
+.user-card {
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
