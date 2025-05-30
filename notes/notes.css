@@ -121,6 +121,8 @@ a {
 
 /* Main Area */
 .main {
+  background: url("cheesewhiz1.jpg") no-repeat center center;
+  background-size: cover;
   flex: 1;
   padding: 20px;
   overflow-x: auto;

@@ -13,24 +13,26 @@ body {
   width: 100%;
 }
 
-/* Left panel with gradient and text */
-.login-container::before {
-  content: "";
+/* Left panel with background image and overlay text */
+.left-panel {
   flex: 1;
-  background: linear-gradient(to right, #f7921e, #ffa726);
+  background: url("cheesewhiz1.jpg") no-repeat center center;
+  background-size: cover;
+  position: relative;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  padding: 60px;
+  align-items: center;
+}
+
+.overlay-text {
   color: white;
   font-size: 1.5rem;
   font-weight: bold;
-}
-
-.login-container::before {
-  content: "🔥 Sched-Ease.\A Welcome to Easier Schedules!";
-  white-space: pre;
+  padding: 60px;
+  text-align: left;
+  background: rgba(0, 0, 0, 0.4); /* Optional dark overlay for contrast */
+  border-radius: 10px;
+  line-height: 1.4;
 }
 
 /* Right side form */

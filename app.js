@@ -3,10 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const app = express();
 const PORT = 3000;
-const multer = require('multer');
-
-
-
+const multer = require("multer");
 
 const uploadDir = path.join(__dirname, "public", "uploads");
 const dataDir = path.join(__dirname, "data");
@@ -21,7 +18,7 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     const uniqueName = Date.now() + "_" + file.originalname;
     cb(null, uniqueName);
-  }
+  },
 });
 const upload = multer({ storage });
 
@@ -43,7 +40,8 @@ const staticDirs = [
   "schedule",
   "appointment",
   "admin",
-  "documents"
+  "documents",
+  "images",
 ];
 
 staticDirs.forEach((dir) => app.use(express.static(dir)));
@@ -108,8 +106,6 @@ app.post("/schedule", (req, res) => {
   writeJsonFile("schedule.json", req.body, res, "Schedule saved");
 });
 
-
-
 app.get("/api/documents", (req, res) => {
   const docs = JSON.parse(fs.readFileSync(dataFile));
   res.json(docs);
@@ -122,7 +118,7 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
     type: mimetype,
     size,
     storedName: filename,
-    uploadedAt: new Date().toISOString()
+    uploadedAt: new Date().toISOString(),
   };
 
   const docs = JSON.parse(fs.readFileSync(dataFile));
@@ -134,7 +130,7 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 app.delete("/api/documents/:filename", (req, res) => {
   const { filename } = req.params;
   const docs = JSON.parse(fs.readFileSync(dataFile));
-  const updatedDocs = docs.filter(doc => doc.storedName !== filename);
+  const updatedDocs = docs.filter((doc) => doc.storedName !== filename);
 
   const filePath = path.join(uploadDir, filename);
   if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
@@ -142,10 +138,6 @@ app.delete("/api/documents/:filename", (req, res) => {
   fs.writeFileSync(dataFile, JSON.stringify(updatedDocs, null, 2));
   res.json({ message: "Deleted" });
 });
-
-
-
-
 
 // Utility function to read JSON
 function readJsonFile(filename, res) {

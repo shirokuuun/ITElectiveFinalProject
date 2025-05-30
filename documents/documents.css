@@ -119,14 +119,14 @@ a {
   transform: translate(-50%, -50%);
 }
 
-
 .main {
-  
+  background: url("cheesewhiz1.jpg") no-repeat center center;
+  background-size: cover;
   padding: 40px;
   width: 100%;
   min-height: 100vh;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .page-title {

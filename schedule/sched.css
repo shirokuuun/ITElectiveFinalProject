@@ -120,6 +120,8 @@ a {
 }
 
 .main-content {
+  background: url("cheesewhiz1.jpg") no-repeat center center;
+  background-size: cover;
   flex: 1;
   padding: 30px;
   overflow-y: auto;

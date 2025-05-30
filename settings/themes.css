@@ -11,8 +11,8 @@
   --button-text: #fff;
   --background: #121212;
   --appointment-item-bg: #1e1e1e;
-   --schedule-item-bg: #1e1e1e;
-    --doc-text-color: #f0f0f0; /* Light text in dark mode */
+  --schedule-item-bg: #1e1e1e;
+  --doc-text-color: #f0f0f0; /* Light text in dark mode */
 }
 
 /* Light Theme */
@@ -26,11 +26,12 @@
   --button-text: #000;
   --appointment-item-bg: #fff;
   --schedule-item-bg: #fff;
-   --doc-text-color: #000000; /* Black in light mode */
+  --doc-text-color: #000000; /* Black in light mode */
 }
 
 /* Fallback/default (System) */
-.theme-system {}
+.theme-system {
+}
 
 /* Applying the variables */
 body {
@@ -64,7 +65,7 @@ body {
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 1rem;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -99,7 +100,6 @@ body {
   color: white;
 }
 
-
 .sidebar {
   background-color: var(--sidebar-bg, #2f3542);
   color: var(--sidebar-text, #fff);
@@ -129,6 +129,7 @@ body,
 .main,
 .main-content,
 .tab,
+.note,
 .settings-container {
   background-color: var(--bg-color, #ffffff);
   color: var(--text-color, #000);

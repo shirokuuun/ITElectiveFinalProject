@@ -121,6 +121,8 @@ a {
 
 /* Main Content */
 .main {
+  background: url("cheesewhiz1.jpg") no-repeat center center;
+  background-size: cover;
   flex: 1;
   padding: 20px;
   overflow-y: auto;
@@ -188,8 +190,7 @@ a {
 .notification-filters {
   margin-bottom: 24px;
   padding: 12px 16px;
-  
- 
+
   display: flex;
   align-items: center;
   gap: 12px;
@@ -210,4 +211,3 @@ a {
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
   outline: none;
 }
-

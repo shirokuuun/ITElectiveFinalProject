@@ -121,12 +121,14 @@ a {
 }
 
 .main {
+  background: url("cheesewhiz1.jpg") no-repeat center center;
+  background-size: cover;
   flex: 1;
   display: flex;
   gap: 20px;
   padding: 20px;
-   padding-left: 150px;
-   padding-top: 100px;
+  padding-left: 150px;
+  padding-top: 100px;
   overflow: hidden;
 }
 

@@ -120,6 +120,8 @@ a {
 }
 
 .settings-container {
+  background: url("cheesewhiz1.jpg") no-repeat center center;
+  background-size: cover;
   flex: 1;
   padding: 30px;
 }
@@ -144,7 +146,6 @@ a {
   color: var(--text-color, #000);
   border-bottom: 2px solid var(--accent-color, #4caf50);
 }
-
 
 .tab-content {
   display: none;

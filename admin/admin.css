@@ -207,3 +207,8 @@ table tbody tr:hover {
   background: #e0e7ff;
   transition: background 0.2s ease;
 }
+
+.main-content {
+  background: url("cheesewhiz1.jpg") no-repeat center center;
+  background-size: cover;
+}

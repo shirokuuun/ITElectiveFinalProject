@@ -120,6 +120,8 @@ a {
 }
 
 .main {
+  background: url("cheesewhiz1.jpg") no-repeat center center;
+  background-size: cover;
   flex-grow: 1;
   padding: 30px;
 }
@@ -162,7 +164,6 @@ a {
 .chart-tabs {
   display: flex;
 }
-
 
 .chart-tabs button {
   background-color: #f0f0f0;
