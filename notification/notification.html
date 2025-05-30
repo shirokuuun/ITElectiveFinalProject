@@ -1,49 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Scheduler</title>
-    <link rel="stylesheet" href="mainPage.css" />
-  </head>
-  <body>
-    <div class="sidebar" id="sidebar">
-      <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
-      <div class="sidebar-content">
-        <h2>Menu</h2>
-        <ul>
-            <a href="dashboard.html"
-            ><li><i>🏠</i><span>dashboard</span></li></a
-          >
-          <a href="mainPage.html"
-            ><li><i>🏠</i><span>appointment</span></li></a
-          >
-          <a href="#"
-            ><li><i>📄</i><span>Documents</span></li></a
-          >
-          <a href="settings.html"
-            ><li><i>⚙️</i><span>Settings</span></li></a
-          ><a href="calendar.html"
-            ><li><i>🏠</i><span>calendar</span></li></a
-          >
-          <a href="schedule.html"
-            ><li><i>🏠</i><span>schedule</span></li></a
-          >
-          <a href="notification.html"
-            ><li><i>🏠</i><span>notifaction</span></li></a
-          >
-          <a href="notes.html"
-            ><li><i>🏠</i><span>notes</span></li></a
-          >
-        </ul>
-      </div>
-      <div class="sidebar-footer">
-        <button class="logout-btn" onclick="logout()">Logout</button>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Notifications</title>
+  <link rel="stylesheet" href="notif.css" />
+</head>
+<body>
+  <div class="sidebar" id="sidebar">
+    <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
+    <div class="sidebar-content">
+      <h2>Menu</h2>
+      <ul>
+        <a href="dashboard.html"><li><i>🏠</i><span>dashboard</span></li></a>
+        <a href="appointment.html"><li><i>📅</i><span>appointment</span></li></a>
+        <a href="#"><li><i>📄</i><span>documents</span></li></a>
+        <a href="settings.html"><li><i>⚙️</i><span>settings</span></li></a>
+        <a href="calendar.html"><li><i>🗓️</i><span>calendar</span></li></a>
+        <a href="schedule.html"><li><i>⏰</i><span>schedule</span></li></a>
+        <a href="notification.html"><li><i>🔔</i><span>notifications</span></li></a>
+        <a href="notes.html"><li><i>📝</i><span>notes</span></li></a>
+      </ul>
     </div>
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
 
-   
+  <div class="main">
+    <h2 class="page-title">Notifications</h2>
 
-    <script src="mainPage.js"></script>
-  </body>
+   <div class="notification-filters">
+  <label for="notificationType">Show:</label>
+  <select id="notificationType" onchange="filterNotifications()">
+    <option value="all">All</option>
+    <option value="appointment">Appointments</option>
+    <option value="schedule">Schedules</option>
+  </select>
+</div>
+
+    <!-- Dynamic notifications will load here -->
+    <div class="notification-list" id="dynamic-notifications"></div>
+  </div>
+
+  <script>
+  let allNotifications = [];
+
+  function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("collapsed");
+  }
+
+  function logout() {
+    alert("Logging out...");
+  }
+
+  async function loadNotifications() {
+    const container = document.getElementById("dynamic-notifications");
+    container.innerHTML = ""; // clear any old data
+    allNotifications = [];
+
+    try {
+      const [appointmentRes, scheduleRes] = await Promise.all([
+        fetch("/appointment"),
+        fetch("/schedule")
+      ]);
+
+      const appointments = await appointmentRes.json();
+      const schedules = await scheduleRes.json();
+
+      if (Array.isArray(appointments)) {
+        appointments.forEach(appt => {
+          const message = `${appt.title || "Untitled"} on ${appt.date} at ${appt.time}`;
+          allNotifications.push({ type: "appointment", title: "New Appointment", message });
+        });
+      }
+
+      if (Array.isArray(schedules)) {
+        schedules.forEach(item => {
+          const time = item.time || "unknown time";
+          const name = item.event || item.title || "Scheduled Event";
+          const message = `${name} at ${time}`;
+          allNotifications.push({ type: "schedule", title: "New Schedule", message });
+        });
+      }
+
+      filterNotifications(); // apply initial filter (default: all)
+    } catch (err) {
+      console.error("Failed to load notifications", err);
+      const errMsg = createNotification("Error", "Could not load notifications.");
+      container.prepend(errMsg);
+    }
+  }
+
+  function filterNotifications() {
+    const type = document.getElementById("notificationType").value;
+    const container = document.getElementById("dynamic-notifications");
+    container.innerHTML = "";
+
+    allNotifications.forEach(n => {
+      if (type === "all" || n.type === type) {
+        const el = createNotification(n.title, n.message);
+        container.appendChild(el);
+      }
+    });
+  }
+
+  function createNotification(title, message) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "notification";
+    wrapper.innerHTML = `
+      <div class="notification-content">
+        <h4>${title}</h4>
+        <p>${message}</p>
+        <span class="time">Just now</span>
+      </div>
+      <button class="dismiss-btn">&times;</button>
+    `;
+    wrapper.querySelector(".dismiss-btn").addEventListener("click", () => wrapper.remove());
+    return wrapper;
+  }
+
+  window.addEventListener("DOMContentLoaded", loadNotifications);
+</script>
+
+
+</body>
 </html>

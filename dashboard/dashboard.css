@@ -121,48 +121,25 @@ a {
 
 .main {
   flex-grow: 1;
-  padding: 20px;
+  padding: 30px;
 }
 
-.board {
-  display: flex;
+.page-title {
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 20px;
+  margin: 20px;
 }
 
-.column {
-  background-color: #ecf0f1;
-  padding: 15px;
-  border-radius: 8px;
-  width: 300px;
-  min-height: 300px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.add-task {
-  background-color: #3498db;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  margin-top: 10px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.task {
-  background-color: white;
-  border-radius: 8px;
-  padding: 10px;
-  margin: 10px 0;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
-
-.task strong {
-  display: block;
-  font-size: 16px;
-  color: #333;
-}
-
-.task p {
-  margin: 5px 0;
-  color: #555;
+.chart-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }

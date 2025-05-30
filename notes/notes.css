@@ -119,50 +119,85 @@ a {
   transform: translate(-50%, -50%);
 }
 
+/* Main Area */
 .main {
-  flex-grow: 1;
+  flex: 1;
   padding: 20px;
+  overflow-x: auto;
 }
 
 .board {
   display: flex;
   gap: 20px;
+  height: 100%;
 }
 
-.column {
-  background-color: #ecf0f1;
-  padding: 15px;
+/* Notes Section */
+.notes {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  width: 3000px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.3s ease;
+}
+
+.notes:hover {
+  transform: translateY(-2px);
+}
+
+.notes h3 {
+  font-size: 18px;
+  text-align: center;
+  color: #1e40af;
+  margin-bottom: 10px;
+}
+
+/* Individual Note */
+.note {
+  background-color: #fef9c3;
+  border-left: 5px solid #facc15;
   border-radius: 8px;
-  width: 300px;
-  min-height: 300px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 12px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
 
-.add-task {
-  background-color: #3498db;
+.note:hover {
+  background-color: #fef08a;
+}
+
+.note button {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  color: #ef4444;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.note button:hover {
+  color: #dc2626;
+}
+
+/* Add Notes Button */
+.add-notes {
+  background-color: #3b82f6;
   color: white;
   border: none;
-  padding: 8px 12px;
-  margin-top: 10px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.task {
-  background-color: white;
-  border-radius: 8px;
   padding: 10px;
-  margin: 10px 0;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
 }
 
-.task strong {
-  display: block;
-  font-size: 16px;
-  color: #333;
-}
-
-.task p {
-  margin: 5px 0;
-  color: #555;
+.add-notes:hover {
+  background-color: #2563eb;
 }

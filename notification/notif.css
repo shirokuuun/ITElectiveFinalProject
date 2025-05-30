@@ -119,50 +119,95 @@ a {
   transform: translate(-50%, -50%);
 }
 
+/* Main Content */
 .main {
-  flex-grow: 1;
+  flex: 1;
   padding: 20px;
+  overflow-y: auto;
 }
 
-.board {
+.page-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #374151;
+}
+
+/* Notification List */
+.notification-list {
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.column {
-  background-color: #ecf0f1;
-  padding: 15px;
-  border-radius: 8px;
-  width: 300px;
-  min-height: 300px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+.notification {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: #ffffff;
+  border-left: 5px solid #3b82f6;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: relative;
+  transition: transform 0.2s;
 }
 
-.add-task {
-  background-color: #3498db;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  margin-top: 10px;
-  cursor: pointer;
-  border-radius: 4px;
+.notification:hover {
+  transform: translateY(-2px);
 }
 
-.task {
-  background-color: white;
-  border-radius: 8px;
-  padding: 10px;
-  margin: 10px 0;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
-
-.task strong {
-  display: block;
+.notification-content h4 {
   font-size: 16px;
-  color: #333;
+  margin-bottom: 6px;
+  color: #1e40af;
 }
 
-.task p {
-  margin: 5px 0;
-  color: #555;
+.notification-content p {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #4b5563;
 }
+
+.notification-content .time {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.dismiss-btn {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #ef4444;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.dismiss-btn:hover {
+  color: #dc2626;
+}
+.notification-filters {
+  margin-bottom: 24px;
+  padding: 12px 16px;
+  
+ 
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.notification-filters select {
+  padding: 8px 14px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #ffffff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.notification-filters select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  outline: none;
+}
+

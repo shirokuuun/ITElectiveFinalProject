@@ -31,8 +31,11 @@ function createTaskElement(phase, taskObj, index) {
   const taskDiv = document.createElement("div");
   taskDiv.className = "task";
 
-  const span = document.createElement("span");
-  span.textContent = taskObj.description;
+  const title = document.createElement("strong");
+  title.textContent = taskObj.title || "No Title";
+
+  const description = document.createElement("p");
+  description.textContent = taskObj.description || "";
 
   const deleteBtn = document.createElement("button");
   deleteBtn.textContent = "✖";
@@ -50,8 +53,10 @@ function createTaskElement(phase, taskObj, index) {
     renderTasks();
   });
 
-  taskDiv.appendChild(span);
+  taskDiv.appendChild(title);
+  taskDiv.appendChild(description);
   taskDiv.appendChild(deleteBtn);
+
   return taskDiv;
 }
 
@@ -75,13 +80,16 @@ function setupAddButtons() {
     const phase = column.querySelector("h3").textContent;
 
     button.addEventListener("click", () => {
-      const taskDescription = prompt(`Enter a new task for "${phase}":`);
-      if (taskDescription) {
-        if (!tasksData[phase]) tasksData[phase] = [];
-        tasksData[phase].push({ description: taskDescription });
-        saveTasksToServer();
-        renderTasks();
-      }
+      const taskTitle = prompt(`Enter a title for the "${phase}" task:`);
+      if (!taskTitle) return;
+
+      const taskDescription = prompt(`Enter a description for "${taskTitle}":`);
+      if (!taskDescription) return;
+
+      if (!tasksData[phase]) tasksData[phase] = [];
+      tasksData[phase].push({ title: taskTitle, description: taskDescription });
+      saveTasksToServer();
+      renderTasks();
     });
   });
 }

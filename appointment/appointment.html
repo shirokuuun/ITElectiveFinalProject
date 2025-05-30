@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="dashboard.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Schedule</title>
+  <link rel="stylesheet" href="appointment.css" />
 </head>
 <body>
   <div class="sidebar" id="sidebar">
@@ -28,25 +27,19 @@
     </div>
   </div>
 
-  <div class="main">
-    <h1 class="page-title">Dashboard</h1>
-    <div class="charts">
-      <div class="chart-card">
-        <h3>Appointments This Week</h3>
-        <canvas id="appointmentsChart"></canvas>
-      </div>
-      <div class="chart-card">
-  <h3>Scheduled Tasks</h3>
-  <canvas id="scheduleChart" width="400" height="200"></canvas>
-</div>
+  <div class="main-content">
+    <h1 class="page-title">My appointment</h1>
 
-      <div class="chart-card">
-        <h3>Notes Created Over Time</h3>
-        <canvas id="notesChart"></canvas>
-      </div>
-    </div>
+    <form id="appointment-form">
+  <input type="text" id="title" placeholder="Title" required />
+  <input type="date" id="date" required />
+  <input type="time" id="time" required />
+  <button type="submit">Add appointment</button>
+</form>
+
+<div id="appointment-list"></div>
   </div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="dashboard.js"></script>
+
+  <script src="appointment.js"></script>
 </body>
 </html>
