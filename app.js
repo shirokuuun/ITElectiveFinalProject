@@ -9,7 +9,7 @@ app.use(express.json());
 // Serve static directories
 const staticDirs = [
   "login", "main", "register", "settings", "settings/profile",
-  "dashboard", "notes", "notification", "calendar", "schedule"
+  "dashboard", "notes", "notification", "calendar", "schedule", "appointment"
 ];
 
 staticDirs.forEach(dir => app.use(express.static(dir)));
@@ -19,14 +19,14 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "login", "login.html"));
 });
 
-// GET tasks
-app.get("/tasks", (req, res) => {
-  readJsonFile("tasks.json", res);
+
+app.get("/appointment", (req, res) => {
+  readJsonFile("appointment.json", res);
 });
 
-// POST tasks
-app.post("/tasks", (req, res) => {
-  writeJsonFile("tasks.json", req.body, res, "Tasks saved");
+
+app.post("/appointment", (req, res) => {
+  writeJsonFile("appointment.json", req.body, res, "Tasks saved");
 });
 
 // GET notes

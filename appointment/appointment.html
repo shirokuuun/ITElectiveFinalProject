@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Calendar</title>
-  <link rel="stylesheet" href="calendar.css" />
+  <title>Schedule</title>
+  <link rel="stylesheet" href="appointment.css" />
 </head>
 <body>
-  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
     <div class="sidebar-content">
@@ -28,41 +27,19 @@
     </div>
   </div>
 
-  <!-- Main Calendar Section -->
-  <div class="main">
-    <h1 class="page-title">Calendar</h1>
-    <div class="calendar-container">
-      <div class="calendar-header">
-        <button id="prevMonth">‹</button>
-        <h3 id="currentMonth">Month Year</h3>
-        <button id="nextMonth">›</button>
-      </div>
-      <div id="calendarGrid" class="calendar-grid"></div>
-      
+  <div class="main-content">
+    <h1 class="page-title">My appointment</h1>
 
-    </div>
-    <div class="note-summary" id="noteSummary">
-  <h3>Notes</h3>
-  <ul id="noteList"></ul>
-</div>
-  </div>
-  
+    <form id="appointment-form">
+  <input type="text" id="title" placeholder="Title" required />
+  <input type="date" id="date" required />
+  <input type="time" id="time" required />
+  <button type="submit">Add appointment</button>
+</form>
 
-  <!-- Note Modal -->
-  <div class="note-modal" id="noteModal">
-    <textarea id="noteInput" placeholder="Add your note..."></textarea>
-    <button class="save-btn" id="saveNoteBtn">Save</button>
-    <button class="cancel-btn" id="cancelNoteBtn">Cancel</button>
+<div id="appointment-list"></div>
   </div>
 
-  <script>
-    function toggleSidebar() {
-      document.getElementById("sidebar").classList.toggle("collapsed");
-    }
-    function logout() {
-      window.location.href = "/login/login.html";
-    }
-  </script>
-  <script src="calendar.js"></script>
+  <script src="appointment.js"></script>
 </body>
 </html>

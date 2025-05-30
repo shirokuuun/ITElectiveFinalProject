@@ -7,6 +7,7 @@ const noteModal = document.getElementById("noteModal");
 const noteInput = document.getElementById("noteInput");
 const saveNoteBtn = document.getElementById("saveNoteBtn");
 const cancelNoteBtn = document.getElementById("cancelNoteBtn");
+const noteList = document.getElementById("noteList");
 
 let currentDate = new Date();
 let notes = {}; // Object to store date: note
@@ -17,7 +18,12 @@ function fetchNotes() {
   fetch("/calendar")
     .then((res) => res.json())
     .then((data) => {
-      notes = data || {};
+      if (data.error) {
+        console.error("Server error:", data.error);
+        notes = {}; // fallback to empty notes
+      } else {
+        notes = data;
+      }
       renderCalendar();
     })
     .catch((err) => {
@@ -83,7 +89,37 @@ function renderCalendar() {
     dayElem.addEventListener("click", () => openNoteModal(dateKey));
     calendarGrid.appendChild(dayElem);
   }
+
+  renderNoteSummary(); // Render notes summary below calendar
 }
+
+// Render the note summary section
+// Render all notes (not filtered by month)
+function renderNoteSummary() {
+  noteList.innerHTML = "";
+
+  const sortedNotes = Object.entries(notes).sort((a, b) => {
+    const dateA = new Date(a[0]);
+    const dateB = new Date(b[0]);
+    return dateA - dateB;
+  });
+
+  if (sortedNotes.length === 0) {
+    noteList.innerHTML = "<li>No notes available.</li>";
+  } else {
+    sortedNotes.forEach(([dateKey, text]) => {
+      const listItem = document.createElement("li");
+      const readableDate = new Date(dateKey).toLocaleDateString("default", {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+      });
+      listItem.textContent = `${readableDate}: ${text}`;
+      noteList.appendChild(listItem);
+    });
+  }
+}
+
 
 // Open note modal for a day
 function openNoteModal(dateKey) {
