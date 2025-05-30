@@ -1,0 +1,61 @@
+/* themes.css */
+
+/* Dark Theme */
+.theme-dark {
+  --bg-color: #121212;
+  --text-color: #f0f0f0;
+  --sidebar-bg: #1f1f1f;
+  --sidebar-text: #ddd;
+  --card-bg: #1e1e1e;
+  --button-bg: #333;
+  --button-text: #fff;
+}
+
+/* Light Theme */
+.theme-light {
+  --bg-color: #ffffff;
+  --text-color: #333;
+  --sidebar-bg: #f0f0f0;
+  --sidebar-text: #333;
+  --card-bg: #f9f9f9;
+  --button-bg: #ddd;
+  --button-text: #000;
+}
+
+/* Fallback/default (System) */
+.theme-system {}
+
+/* Applying the variables */
+body {
+  background-color: var(--bg-color, #ffffff);
+  color: var(--text-color, #000);
+}
+
+.sidebar {
+  background-color: var(--sidebar-bg, #2f3542);
+  color: var(--sidebar-text, #fff);
+}
+
+.sidebar li:hover {
+  background-color: var(--button-bg, #57606f);
+}
+
+.chart-card,
+.profile-card {
+  background: var(--card-bg, #fff);
+  color: var(--text-color, #000);
+}
+
+.chart-tabs button {
+  background-color: var(--button-bg, #f0f0f0);
+  color: var(--button-text, #333);
+}
+
+/* Smooth transitions */
+body,
+.sidebar,
+.chart-card,
+.profile-card,
+.chart-tabs button {
+  transition: background-color 0.3s, color 0.3s;
+}

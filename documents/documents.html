@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="documents.css" />
+    <link rel="stylesheet" href="themes.css">
+
+    
+  </head>
+  <body>
+    <div class="sidebar" id="sidebar">
+      <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
+      <div class="sidebar-content">
+        <h2>Menu</h2>
+        <ul>
+          <a href="admin.html" id="adminMenu"
+            ><li><i>👤</i><span>admin</span></li></a
+          >
+          <a href="dashboard.html"
+            ><li><i>🏠</i><span>dashboard</span></li></a
+          >
+          <a href="appointment.html"
+            ><li><i>📅</i><span>appointment</span></li></a
+          >
+          <a href="documents.html"
+            ><li><i>📄</i><span>documents</span></li></a
+          >
+          <a href="settings.html"
+            ><li><i>⚙️</i><span>settings</span></li></a
+          >
+          <a href="calendar.html"
+            ><li><i>🗓️</i><span>calendar</span></li></a
+          >
+          <a href="schedule.html"
+            ><li><i>⏰</i><span>schedule</span></li></a
+          >
+          <a href="notification.html"
+            ><li><i>🔔</i><span>notifications</span></li></a
+          >
+          <a href="notes.html"
+            ><li><i>📝</i><span>notes</span></li></a
+          >
+        </ul>
+      </div>
+      <div class="sidebar-footer">
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </div>
+    </div>
+<div class="main">
+  <h1 class="page-title">Documents</h1>
+  <div class="upload-form">
+    <form id="uploadForm" enctype="multipart/form-data">
+      <input type="file" name="file" id="fileInput" />
+      <button type="submit">Upload</button>
+    </form>
+  </div>
+  <div class="document-list">
+    <h3>Uploaded Files</h3>
+    <div id="documentList"></div>
+  </div>
+</div>
+
+
+  
+  <script src="theme.js"></script>
+
+    <script src="documents.js"></script>
+  </body>
+</html>

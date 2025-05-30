@@ -9,6 +9,7 @@ body {
   display: flex;
   height: 100vh;
   background: linear-gradient(to right, #e1f0ff, #f4e8ff);
+  overflow: hidden;
 }
 
 .sidebar {
@@ -121,21 +122,68 @@ a {
 
 .main {
   flex: 1;
+  display: flex;
+  gap: 20px;
   padding: 20px;
+   padding-left: 150px;
+   padding-top: 100px;
+  overflow: hidden;
 }
 
-.page-title {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #2f3542;
+/* Notes left, scrollable */
+.note-summary {
+  flex: 1;
+  max-width: 40%;
+  min-width: 280px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 20px;
+  border-top: 2px solid #ddd;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
+.note-summary h3 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #333;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+}
+
+#noteList {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+#noteList li {
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-left: 5px solid #007bff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  font-size: 1rem;
+  color: #444;
+  transition: background-color 0.2s ease;
+}
+
+#noteList li:hover {
+  background-color: #f0f8ff;
+}
+
+/* Calendar on right */
 .calendar-container {
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  max-width: 3000px;
+  width: 500px;
+  height: 500px;
+  min-width: 320px;
+  flex-shrink: 0;
 }
 
 .calendar-header {
@@ -181,12 +229,12 @@ a {
 }
 
 .calendar-day.note {
-  background-color: #5661e3; /* light green background */
+  background-color: #5661e3;
   color: white;
 }
 
 .calendar-day.note::after {
-  content: "\1F4DD"; /* 📝 */
+  content: "\1F4DD";
   position: absolute;
   bottom: 5px;
   right: 5px;
@@ -203,7 +251,7 @@ a {
   pointer-events: none;
 }
 
-/* Modal styles for adding notes */
+/* Modal styles */
 .note-modal {
   position: fixed;
   top: 50%;
@@ -215,7 +263,7 @@ a {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
   z-index: 1000;
-  max-width: 400px;
+  max-width: 500px;
   width: 100%;
   display: none;
 }
@@ -250,43 +298,4 @@ a {
 .note-modal .cancel-btn {
   background-color: #ff6b81;
   color: white;
-}
-
-.note-summary {
-  margin-top: 30px;
-  padding: 20px;
-  border-top: 2px solid #ddd;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.note-summary h3 {
-  margin-bottom: 15px;
-  font-size: 1.5rem;
-  color: #333;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 8px;
-}
-
-#noteList {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-#noteList li {
-  padding: 12px 15px;
-  margin-bottom: 10px;
-  background-color: #fff;
-  border-left: 5px solid #007bff;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-  font-size: 1rem;
-  color: #444;
-  transition: background-color 0.2s ease;
-}
-
-#noteList li:hover {
-  background-color: #f0f8ff;
 }

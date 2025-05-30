@@ -1,0 +1,242 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(to right, #e1f0ff, #f4e8ff);
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #2f3542;
+  color: white;
+  transition: width 0.3s;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.toggle-btn {
+  background-color: #1e272e;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.sidebar-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.sidebar h2 {
+  padding: 20px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.sidebar.collapsed h2 {
+  display: none;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  padding: 15px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar li span {
+  display: inline-block;
+}
+
+.sidebar.collapsed li span {
+  display: none;
+}
+
+.sidebar.collapsed li i {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.sidebar li:hover {
+  background-color: #57606f;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Footer Logout Button pinned to bottom */
+.sidebar-footer {
+  padding: 10px;
+}
+
+.logout-btn {
+  background-color: #ff4757;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+}
+
+.sidebar.collapsed .logout-btn {
+  padding: 10px;
+  font-size: 0;
+  position: relative;
+  height: 40px;
+}
+
+.sidebar.collapsed .logout-btn::before {
+  content: "🚪";
+  font-size: 20px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.main {
+  
+  padding: 40px;
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page-title {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #2f3542;
+  font-weight: 600;
+}
+
+.upload-form {
+  background: #ffffff;
+  padding: 25px 30px;
+  border-radius: 14px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+  transition: box-shadow 0.3s ease;
+}
+
+.upload-form:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.upload-form input[type="file"] {
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+
+.upload-form button {
+  background-color: #2ed573;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.upload-form button:hover {
+  background-color: #27c86f;
+}
+
+.document-list {
+  background: #fff;
+  border-radius: 14px;
+  padding: 25px 30px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+}
+
+.document-list h3 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #2f3542;
+  border-bottom: 2px solid #dcdde1;
+  padding-bottom: 8px;
+  font-weight: 600;
+}
+
+.document-item {
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 16px;
+  color: #444;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.document-item:last-child {
+  border-bottom: none;
+}
+
+.document-info {
+  flex-grow: 1;
+  margin-right: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.document-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.document-actions button {
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.download-btn {
+  background-color: #1e90ff;
+  color: white;
+}
+
+.download-btn:hover {
+  background-color: #0f78d0;
+}
+
+.delete-btn {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #e25454;
+}
