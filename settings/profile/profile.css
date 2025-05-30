@@ -41,6 +41,7 @@ body {
 
 .form-group {
   margin-bottom: 1rem;
+  width: 100%;
 }
 
 .form-group label {
@@ -56,19 +57,27 @@ input[type="email"] {
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
+  box-sizing: border-box;
 }
 
 .form-group-row {
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.form-group-row .form-group {
+  flex: 1;
 }
 
 .username-field {
   display: flex;
   align-items: center;
+  width: 100%;
   border: 1px solid #ccc;
   border-radius: 8px;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .username-field .prefix {
@@ -76,6 +85,7 @@ input[type="email"] {
   background-color: #eee;
   font-size: 0.9rem;
   color: #333;
+  white-space: nowrap;
 }
 
 .username-field input {
@@ -96,6 +106,11 @@ input[type="email"] {
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.photo-upload input {
+  flex-grow: 1;
 }
 
 .photo-upload span {

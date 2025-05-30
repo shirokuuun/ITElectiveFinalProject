@@ -29,6 +29,7 @@ document
           username,
           password,
           profileImage: "",
+          isAdmin: false,
         };
 
         // Send updated users back to server

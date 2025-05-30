@@ -8,22 +8,30 @@ app.use(express.json());
 
 // Serve static directories
 const staticDirs = [
-  "login", "main", "register", "settings", "settings/profile",
-  "dashboard", "notes", "notification", "calendar", "schedule", "appointment"
+  "login",
+  "main",
+  "register",
+  "settings",
+  "settings/profile",
+  "dashboard",
+  "notes",
+  "notification",
+  "calendar",
+  "schedule",
+  "appointment",
+  "admin",
 ];
 
-staticDirs.forEach(dir => app.use(express.static(dir)));
+staticDirs.forEach((dir) => app.use(express.static(dir)));
 
 // GET home page
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "login", "login.html"));
 });
 
-
 app.get("/appointment", (req, res) => {
   readJsonFile("appointment.json", res);
 });
-
 
 app.post("/appointment", (req, res) => {
   writeJsonFile("appointment.json", req.body, res, "Tasks saved");
@@ -55,7 +63,6 @@ app.post("/calendar", (req, res) => {
   }
   writeJsonFile("calendar.json", data, res, "Calendar notes saved");
 });
-
 
 // GET users
 app.get("/users.json", (req, res) => {
@@ -91,7 +98,10 @@ function readJsonFile(filename, res) {
 // Utility function to write JSON
 function writeJsonFile(filename, content, res, successMessage) {
   try {
-    fs.writeFileSync(path.join(__dirname, filename), JSON.stringify(content, null, 2));
+    fs.writeFileSync(
+      path.join(__dirname, filename),
+      JSON.stringify(content, null, 2)
+    );
     res.status(200).send(successMessage);
   } catch (err) {
     console.error(`Failed to write ${filename}:`, err);

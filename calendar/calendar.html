@@ -1,68 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Calendar</title>
-  <link rel="stylesheet" href="calendar.css" />
-</head>
-<body>
-  <!-- Sidebar -->
-  <div class="sidebar" id="sidebar">
-    <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
-    <div class="sidebar-content">
-      <h2>Menu</h2>
-      <ul>
-        <a href="dashboard.html"><li><i>🏠</i><span>dashboard</span></li></a>
-        <a href="appointment.html"><li><i>📅</i><span>appointment</span></li></a>
-        <a href="#"><li><i>📄</i><span>documents</span></li></a>
-        <a href="settings.html"><li><i>⚙️</i><span>settings</span></li></a>
-        <a href="calendar.html"><li><i>🗓️</i><span>calendar</span></li></a>
-        <a href="schedule.html"><li><i>⏰</i><span>schedule</span></li></a>
-        <a href="notification.html"><li><i>🔔</i><span>notifications</span></li></a>
-        <a href="notes.html"><li><i>📝</i><span>notes</span></li></a>
-      </ul>
-    </div>
-    <div class="sidebar-footer">
-      <button class="logout-btn" onclick="logout()">Logout</button>
-    </div>
-  </div>
-
-  <!-- Main Calendar Section -->
-  <div class="main">
-    <h1 class="page-title">Calendar</h1>
-    <div class="calendar-container">
-      <div class="calendar-header">
-        <button id="prevMonth">‹</button>
-        <h3 id="currentMonth">Month Year</h3>
-        <button id="nextMonth">›</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar</title>
+    <link rel="stylesheet" href="calendar.css" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
+      <div class="sidebar-content">
+        <h2>Menu</h2>
+        <ul>
+          <a href="admin.html" id="adminMenu"
+            ><li><i>👤</i><span>admin</span></li></a
+          >
+          <a href="dashboard.html"
+            ><li><i>🏠</i><span>dashboard</span></li></a
+          >
+          <a href="appointment.html"
+            ><li><i>📅</i><span>appointment</span></li></a
+          >
+          <a href="#"
+            ><li><i>📄</i><span>documents</span></li></a
+          >
+          <a href="settings.html"
+            ><li><i>⚙️</i><span>settings</span></li></a
+          >
+          <a href="calendar.html"
+            ><li><i>🗓️</i><span>calendar</span></li></a
+          >
+          <a href="schedule.html"
+            ><li><i>⏰</i><span>schedule</span></li></a
+          >
+          <a href="notification.html"
+            ><li><i>🔔</i><span>notifications</span></li></a
+          >
+          <a href="notes.html"
+            ><li><i>📝</i><span>notes</span></li></a
+          >
+        </ul>
       </div>
-      <div id="calendarGrid" class="calendar-grid"></div>
-      
-
+      <div class="sidebar-footer">
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </div>
     </div>
-    <div class="note-summary" id="noteSummary">
-  <h3>Notes</h3>
-  <ul id="noteList"></ul>
-</div>
-  </div>
-  
 
-  <!-- Note Modal -->
-  <div class="note-modal" id="noteModal">
-    <textarea id="noteInput" placeholder="Add your note..."></textarea>
-    <button class="save-btn" id="saveNoteBtn">Save</button>
-    <button class="cancel-btn" id="cancelNoteBtn">Cancel</button>
-  </div>
+    <!-- Main Calendar Section -->
+    <div class="main">
+      <h1 class="page-title">Calendar</h1>
+      <div class="calendar-container">
+        <div class="calendar-header">
+          <button id="prevMonth">‹</button>
+          <h3 id="currentMonth">Month Year</h3>
+          <button id="nextMonth">›</button>
+        </div>
+        <div id="calendarGrid" class="calendar-grid"></div>
+      </div>
+      <div class="note-summary" id="noteSummary">
+        <h3>Notes</h3>
+        <ul id="noteList"></ul>
+      </div>
+    </div>
 
-  <script>
-    function toggleSidebar() {
-      document.getElementById("sidebar").classList.toggle("collapsed");
-    }
-    function logout() {
-      window.location.href = "/login/login.html";
-    }
-  </script>
-  <script src="calendar.js"></script>
-</body>
+    <!-- Note Modal -->
+    <div class="note-modal" id="noteModal">
+      <textarea id="noteInput" placeholder="Add your note..."></textarea>
+      <button class="save-btn" id="saveNoteBtn">Save</button>
+      <button class="cancel-btn" id="cancelNoteBtn">Cancel</button>
+    </div>
+
+    <script>
+      function toggleSidebar() {
+        document.getElementById("sidebar").classList.toggle("collapsed");
+      }
+      function logout() {
+        window.location.href = "/login/login.html";
+      }
+    </script>
+    <script src="calendar.js"></script>
+  </body>
 </html>

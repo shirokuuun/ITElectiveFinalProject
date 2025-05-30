@@ -1,3 +1,12 @@
+window.toggleSidebar = function () {
+  document.getElementById("sidebar").classList.toggle("collapsed");
+};
+
+if (localStorage.getItem("isAdmin") !== "true") {
+  const adminMenu = document.getElementById("adminMenu");
+  if (adminMenu) adminMenu.style.display = "none";
+}
+
 const calendarGrid = document.getElementById("calendarGrid");
 const currentMonthEl = document.getElementById("currentMonth");
 const prevMonthBtn = document.getElementById("prevMonth");
@@ -112,14 +121,13 @@ function renderNoteSummary() {
       const readableDate = new Date(dateKey).toLocaleDateString("default", {
         day: "numeric",
         month: "short",
-        year: "numeric"
+        year: "numeric",
       });
       listItem.textContent = `${readableDate}: ${text}`;
       noteList.appendChild(listItem);
     });
   }
 }
-
 
 // Open note modal for a day
 function openNoteModal(dateKey) {

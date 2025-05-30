@@ -9,19 +9,38 @@
   <body>
     <div class="sidebar" id="sidebar">
       <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
-       <div class="sidebar-content">
-      <h2>Menu</h2>
-      <ul>
-         <a href="dashboard.html"><li><i>🏠</i><span>dashboard</span></li></a>
-        <a href="appointment.html"><li><i>📅</i><span>appointment</span></li></a>
-        <a href="#"><li><i>📄</i><span>documents</span></li></a>
-        <a href="settings.html"><li><i>⚙️</i><span>settings</span></li></a>
-        <a href="calendar.html"><li><i>🗓️</i><span>calendar</span></li></a>
-        <a href="schedule.html"><li><i>⏰</i><span>schedule</span></li></a>
-        <a href="notification.html"><li><i>🔔</i><span>notifications</span></li></a>
-        <a href="notes.html"><li><i>📝</i><span>notes</span></li></a>
-      </ul>
-    </div>
+      <div class="sidebar-content">
+        <h2>Menu</h2>
+        <ul>
+          <a href="admin.html" id="adminMenu"
+            ><li><i>👤</i><span>admin</span></li></a
+          >
+          <a href="dashboard.html"
+            ><li><i>🏠</i><span>dashboard</span></li></a
+          >
+          <a href="appointment.html"
+            ><li><i>📅</i><span>appointment</span></li></a
+          >
+          <a href="#"
+            ><li><i>📄</i><span>documents</span></li></a
+          >
+          <a href="settings.html"
+            ><li><i>⚙️</i><span>settings</span></li></a
+          >
+          <a href="calendar.html"
+            ><li><i>🗓️</i><span>calendar</span></li></a
+          >
+          <a href="schedule.html"
+            ><li><i>⏰</i><span>schedule</span></li></a
+          >
+          <a href="notification.html"
+            ><li><i>🔔</i><span>notifications</span></li></a
+          >
+          <a href="notes.html"
+            ><li><i>📝</i><span>notes</span></li></a
+          >
+        </ul>
+      </div>
       <div class="sidebar-footer">
         <button class="logout-btn" onclick="logout()">Logout</button>
       </div>
@@ -29,14 +48,12 @@
 
     <div class="main">
       <div class="board">
-        
         <div class="notes">
           <h3>notes</h3>
           <button class="add-notes">+ Add notes</button>
         </div>
       </div>
     </div>
-   
 
     <script src="notes.js"></script>
   </body>

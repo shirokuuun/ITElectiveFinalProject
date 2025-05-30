@@ -1,3 +1,12 @@
+window.toggleSidebar = function () {
+  document.getElementById("sidebar").classList.toggle("collapsed");
+};
+
+if (localStorage.getItem("isAdmin") !== "true") {
+  const adminMenu = document.getElementById("adminMenu");
+  if (adminMenu) adminMenu.style.display = "none";
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const appointmentForm = document.getElementById("appointment-form");
   const appointmentList = document.getElementById("appointment-list");

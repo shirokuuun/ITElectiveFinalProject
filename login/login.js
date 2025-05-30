@@ -21,6 +21,12 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
   if (user && user.password === password) {
     alert("Login successful!");
     localStorage.setItem("loggedInUser", username);
+    // Store admin status
+    if (user.isAdmin) {
+      localStorage.setItem("isAdmin", "true");
+    } else {
+      localStorage.setItem("isAdmin", "false");
+    }
     window.location.href = "dashboard.html";
   } else {
     alert("Invalid username or password.");

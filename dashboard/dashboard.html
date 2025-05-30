@@ -1,52 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="dashboard.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-  <div class="sidebar" id="sidebar">
-    <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
-    <div class="sidebar-content">
-      <h2>Menu</h2>
-      <ul>
-        <a href="dashboard.html"><li><i>🏠</i><span>dashboard</span></li></a>
-        <a href="appointment.html"><li><i>📅</i><span>appointment</span></li></a>
-        <a href="#"><li><i>📄</i><span>documents</span></li></a>
-        <a href="settings.html"><li><i>⚙️</i><span>settings</span></li></a>
-        <a href="calendar.html"><li><i>🗓️</i><span>calendar</span></li></a>
-        <a href="schedule.html"><li><i>⏰</i><span>schedule</span></li></a>
-        <a href="notification.html"><li><i>🔔</i><span>notifications</span></li></a>
-        <a href="notes.html"><li><i>📝</i><span>notes</span></li></a>
-      </ul>
-    </div>
-    <div class="sidebar-footer">
-      <button class="logout-btn" onclick="logout()">Logout</button>
-    </div>
-  </div>
-
-  <div class="main">
-    <h1 class="page-title">Dashboard</h1>
-    <div class="charts">
-      <div class="chart-card">
-        <h3>Appointments This Week</h3>
-        <canvas id="appointmentsChart"></canvas>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="sidebar" id="sidebar">
+      <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
+      <div class="sidebar-content">
+        <h2>Menu</h2>
+        <ul>
+          <a href="admin.html" id="adminMenu"
+            ><li><i>👤</i><span>admin</span></li></a
+          >
+          <a href="dashboard.html"
+            ><li><i>🏠</i><span>dashboard</span></li></a
+          >
+          <a href="appointment.html"
+            ><li><i>📅</i><span>appointment</span></li></a
+          >
+          <a href="#"
+            ><li><i>📄</i><span>documents</span></li></a
+          >
+          <a href="settings.html"
+            ><li><i>⚙️</i><span>settings</span></li></a
+          >
+          <a href="calendar.html"
+            ><li><i>🗓️</i><span>calendar</span></li></a
+          >
+          <a href="schedule.html"
+            ><li><i>⏰</i><span>schedule</span></li></a
+          >
+          <a href="notification.html"
+            ><li><i>🔔</i><span>notifications</span></li></a
+          >
+          <a href="notes.html"
+            ><li><i>📝</i><span>notes</span></li></a
+          >
+        </ul>
       </div>
-      <div class="chart-card">
-  <h3>Scheduled Tasks</h3>
-  <canvas id="scheduleChart" width="400" height="200"></canvas>
-</div>
-
-      <div class="chart-card">
-        <h3>Notes Created Over Time</h3>
-        <canvas id="notesChart"></canvas>
+      <div class="sidebar-footer">
+        <button class="logout-btn" onclick="logout()">Logout</button>
       </div>
     </div>
-  </div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="dashboard.js"></script>
-</body>
+
+    <div class="main">
+      <h1 class="page-title">Dashboard</h1>
+      <div class="charts">
+        <div class="chart-card">
+          <h3>Appointments This Week</h3>
+          <canvas id="appointmentsChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Scheduled Tasks</h3>
+          <canvas id="scheduleChart" width="400" height="200"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <h3>Notes Created Over Time</h3>
+          <canvas id="notesChart"></canvas>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboard.js"></script>
+  </body>
 </html>
