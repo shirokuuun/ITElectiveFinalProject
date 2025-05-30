@@ -130,7 +130,3 @@ function processData(dataList, range) {
   return { labels, data };
 }
 
-function logout() {
-  localStorage.removeItem("loggedInUser");
-  window.location.href = "login.html";
-}

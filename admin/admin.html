@@ -1,16 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="themes.css">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - All Users</title>
+  <link rel="stylesheet" href="admin.css" />
+  
+</head>
+<body>
+  <div class="sidebar" id="sidebar">
+    <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
+    <div class="sidebar-content">
+      <h2>Menu</h2>
+      <ul>
+        <a href="admin.html"><li><i>👤</i><span>admin</span></li></a>
+        <a href="dashboard.html"><li><i>🏠</i><span>dashboard</span></li></a>
+        <a href="appointment.html"><li><i>📅</i><span>appointment</span></li></a>
+        <a href="documents.html"><li><i>📄</i><span>documents</span></li></a>
+        <a href="settings.html"><li><i>⚙️</i><span>settings</span></li></a>
+        <a href="calendar.html"><li><i>🗓️</i><span>calendar</span></li></a>
+        <a href="schedule.html"><li><i>⏰</i><span>schedule</span></li></a>
+        <a href="notification.html"><li><i>🔔</i><span>notifications</span></li></a>
+        <a href="notes.html"><li><i>📝</i><span>notes</span></li></a>
+      </ul>
+    </div>
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
 
-    <title>Admin</title>
-  </head>
-  <body>
-    <p>Hello Admin</p>
-  </body>
+  <div class="main-content">
+        <h1 class="page-title">Admin</h1>
+        <div id="usersContainer">
+          <button onclick="getAllUsers()">Get all users</button>
+        </div>
+      </div>
+
   <script src="admin.js"></script>
-  <script src="theme.js"></script>
-
+</body>
 </html>
