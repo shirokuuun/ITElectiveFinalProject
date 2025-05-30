@@ -167,3 +167,8 @@ nextMonthBtn.addEventListener("click", () => {
 
 // Load on page start
 fetchNotes();
+
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  window.location.href = "login.html";
+}

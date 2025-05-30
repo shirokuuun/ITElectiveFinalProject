@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  // Toggle Sidebar
   window.toggleSidebar = function () {
     document.getElementById("sidebar").classList.toggle("collapsed");
   };
 
+  // Hide admin tab if not admin
   if (localStorage.getItem("isAdmin") !== "true") {
     const adminMenu = document.getElementById("adminMenu");
     if (adminMenu) adminMenu.style.display = "none";
@@ -10,13 +12,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Logout
   window.logout = function () {
+    localStorage.removeItem("loggedInUser");
     window.location.href = "/login/login.html";
   };
 
-  const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-  // ==== Fetch Appointments ====
+  // Fetch data
   let appointments = [];
+  let schedules = [];
+
   try {
     const res = await fetch("/appointment");
     appointments = await res.json();
@@ -24,98 +27,110 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Failed to fetch appointments:", err);
   }
 
-  const appointmentsPerDay = {};
-  appointments.forEach((item) => {
-    const day = new Date(item.date).toLocaleDateString("en-US", {
-      weekday: "short",
-    });
-    appointmentsPerDay[day] = (appointmentsPerDay[day] || 0) + 1;
-  });
-
-  const appointmentsData = weekdays.map((day) => appointmentsPerDay[day] || 0);
-
-  const appointmentsCtx = document
-    .getElementById("appointmentsChart")
-    .getContext("2d");
-  new Chart(appointmentsCtx, {
-    type: "bar",
-    data: {
-      labels: weekdays,
-      datasets: [
-        {
-          label: "Appointments",
-          data: appointmentsData,
-          backgroundColor: "#3498db",
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      plugins: { legend: { display: false } },
-      scales: { y: { beginAtZero: true } },
-    },
-  });
-
-  // ==== Fetch Schedule ====
-  let scheduleData = [];
   try {
     const res = await fetch("/schedule");
-    scheduleData = await res.json();
+    schedules = await res.json();
   } catch (err) {
-    console.error("Failed to fetch schedule:", err);
+    console.error("Failed to fetch schedules:", err);
   }
 
-  const schedulePerDay = {};
-  scheduleData.forEach((item) => {
-    const day = new Date(item.date).toLocaleDateString("en-US", {
-      weekday: "short",
-    });
-    schedulePerDay[day] = (schedulePerDay[day] || 0) + 1;
-  });
+  // Initialize charts
+  const appointmentsChart = new Chart(
+    document.getElementById("appointmentsChart").getContext("2d"),
+    generateChartConfig([], "Appointments", "#3498db")
+  );
 
-  const scheduleChartData = weekdays.map((day) => schedulePerDay[day] || 0);
+  const scheduleChart = new Chart(
+    document.getElementById("scheduleChart").getContext("2d"),
+    generateChartConfig([], "Scheduled Tasks", "#f39c12")
+  );
 
-  const scheduleCtx = document.getElementById("scheduleChart").getContext("2d");
-  new Chart(scheduleCtx, {
+  // Expose update functions to buttons
+  window.updateAppointmentsChart = (range) => {
+    const { labels, data } = processData(appointments, range);
+    updateChart(appointmentsChart, labels, data);
+  };
+
+  window.updateScheduleChart = (range) => {
+    const { labels, data } = processData(schedules, range);
+    updateChart(scheduleChart, labels, data);
+  };
+
+  // Load default view
+  updateAppointmentsChart("weekly");
+  updateScheduleChart("weekly");
+});
+
+// Helper: Create chart configuration
+function generateChartConfig(data, label, color) {
+  return {
     type: "bar",
     data: {
-      labels: weekdays,
+      labels: [],
       datasets: [
         {
-          label: "Scheduled Tasks",
-          data: scheduleChartData,
-          backgroundColor: "#f39c12",
+          label,
+          data,
+          backgroundColor: color,
         },
       ],
     },
     options: {
       responsive: true,
       plugins: { legend: { display: false } },
-      scales: { y: { beginAtZero: true } },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            precision: 0,
+          },
+        },
+      },
     },
+  };
+}
+
+// Helper: Update chart with new labels/data
+function updateChart(chart, labels, data) {
+  chart.data.labels = labels;
+  chart.data.datasets[0].data = data;
+  chart.update();
+}
+
+// Helper: Process data per range
+function processData(dataList, range) {
+  const result = {};
+  const now = new Date();
+
+  dataList.forEach((item) => {
+    const date = new Date(item.date);
+
+    let key;
+    if (range === "weekly") {
+      key = date.toLocaleDateString("en-US", { weekday: "short" }); // e.g. Mon
+    } else if (range === "monthly") {
+      key = String(date.getDate()).padStart(2, "0"); // 01–31
+    } else if (range === "yearly") {
+      key = date.toLocaleDateString("en-US", { month: "short" }); // Jan–Dec
+    }
+
+    result[key] = (result[key] || 0) + 1;
   });
 
-  // ==== Notes Overview Chart (Example) ====
-  const notesCtx = document.getElementById("notesChart").getContext("2d");
-  new Chart(notesCtx, {
-    type: "line",
-    data: {
-      labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
-      datasets: [
-        {
-          label: "Notes",
-          data: [5, 8, 6, 10],
-          fill: true,
-          borderColor: "#2ecc71",
-          backgroundColor: "rgba(46, 204, 113, 0.2)",
-          tension: 0.4,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      plugins: { legend: { display: true } },
-      scales: { y: { beginAtZero: true } },
-    },
-  });
-});
+  let labels;
+  if (range === "weekly") {
+    labels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  } else if (range === "monthly") {
+    labels = Array.from({ length: 31 }, (_, i) => String(i + 1).padStart(2, "0"));
+  } else if (range === "yearly") {
+    labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  }
+
+  const data = labels.map((label) => result[label] || 0);
+  return { labels, data };
+}
+
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  window.location.href = "login.html";
+}

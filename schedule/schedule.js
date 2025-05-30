@@ -105,3 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch((err) => console.error("Save error:", err));
   }
 });
+
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  window.location.href = "login.html";
+}

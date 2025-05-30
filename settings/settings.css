@@ -126,23 +126,25 @@ a {
 
 .tabs {
   display: flex;
-  gap: 10px;
-  border-bottom: 2px solid #ccc;
-  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-color, #ccc);
+  margin-bottom: 1rem;
 }
 
 .tab {
-  padding: 10px 20px;
+  padding: 0.5rem 1rem;
   cursor: pointer;
-  border-radius: 6px 6px 0 0;
-  background-color: #f1f1f1;
+  border-radius: 8px 8px 0 0;
+  background-color: transparent;
+  color: var(--text-color, #333);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .tab.active {
-  background-color: white;
-  border-bottom: 2px solid white;
-  font-weight: bold;
+  background-color: var(--card-bg, #ffffff); /* dark mode: #1e1e1e */
+  color: var(--text-color, #000);
+  border-bottom: 2px solid var(--accent-color, #4caf50);
 }
+
 
 .tab-content {
   display: none;
