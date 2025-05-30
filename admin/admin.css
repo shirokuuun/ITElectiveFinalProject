@@ -1,0 +1,120 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(to right, #e1f0ff, #f4e8ff);
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #2f3542;
+  color: white;
+  transition: width 0.3s;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.toggle-btn {
+  background-color: #1e272e;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.sidebar-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.sidebar h2 {
+  padding: 20px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.sidebar.collapsed h2 {
+  display: none;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  padding: 15px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar li span {
+  display: inline-block;
+}
+
+.sidebar.collapsed li span {
+  display: none;
+}
+
+.sidebar.collapsed li i {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.sidebar li:hover {
+  background-color: #57606f;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Footer Logout Button pinned to bottom */
+.sidebar-footer {
+  padding: 10px;
+}
+
+.logout-btn {
+  background-color: #ff4757;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+}
+
+.sidebar.collapsed .logout-btn {
+  padding: 10px;
+  font-size: 0;
+  position: relative;
+  height: 40px;
+}
+
+.sidebar.collapsed .logout-btn::before {
+  content: "🚪";
+  font-size: 20px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

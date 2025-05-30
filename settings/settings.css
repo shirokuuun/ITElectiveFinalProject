@@ -176,3 +176,21 @@ a {
   height: auto;
   margin-bottom: 10px;
 }
+
+body[data-theme="dark"] {
+  background: #2f3542;
+  color: white;
+}
+
+body[data-theme="light"] {
+  background: #ffffff;
+  color: #2f3542;
+}
+
+body[data-theme="system"] {
+  background: linear-gradient(
+    to right,
+    #e1f0ff,
+    #f4e8ff
+  ); /* or use prefers-color-scheme in advanced setups */
+}
