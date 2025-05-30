@@ -1,36 +1,87 @@
-function toggleSidebar() {
-  document.getElementById("sidebar").classList.toggle("collapsed");
-}
+document.addEventListener("DOMContentLoaded", async () => {
+  // Sidebar toggle
+  window.toggleSidebar = function () {
+    document.getElementById("sidebar").classList.toggle("collapsed");
+  };
 
-function logout() {
-  window.location.href = "/login/login.html";
-}
+  // Logout
+  window.logout = function () {
+    window.location.href = "/login/login.html";
+  };
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Chart 1: Appointments This Week
+  const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  // ==== Fetch Appointments ====
+  let appointments = [];
+  try {
+    const res = await fetch("/appointment");
+    appointments = await res.json();
+  } catch (err) {
+    console.error("Failed to fetch appointments:", err);
+  }
+
+  const appointmentsPerDay = {};
+  appointments.forEach(item => {
+    const day = new Date(item.date).toLocaleDateString("en-US", { weekday: "short" });
+    appointmentsPerDay[day] = (appointmentsPerDay[day] || 0) + 1;
+  });
+
+  const appointmentsData = weekdays.map(day => appointmentsPerDay[day] || 0);
+
   const appointmentsCtx = document.getElementById("appointmentsChart").getContext("2d");
   new Chart(appointmentsCtx, {
     type: "bar",
     data: {
-      labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      labels: weekdays,
       datasets: [{
         label: "Appointments",
-        data: [2, 3, 4, 1, 5, 0, 1],
+        data: appointmentsData,
         backgroundColor: "#3498db"
       }]
     },
     options: {
       responsive: true,
-      plugins: {
-        legend: { display: false }
-      },
-      scales: {
-        y: { beginAtZero: true }
-      }
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true } }
     }
   });
 
-  // Chart 2: Notes Created Over Time
+  // ==== Fetch Schedule ====
+  let scheduleData = [];
+  try {
+    const res = await fetch("/schedule");
+    scheduleData = await res.json();
+  } catch (err) {
+    console.error("Failed to fetch schedule:", err);
+  }
+
+  const schedulePerDay = {};
+  scheduleData.forEach(item => {
+    const day = new Date(item.date).toLocaleDateString("en-US", { weekday: "short" });
+    schedulePerDay[day] = (schedulePerDay[day] || 0) + 1;
+  });
+
+  const scheduleChartData = weekdays.map(day => schedulePerDay[day] || 0);
+
+  const scheduleCtx = document.getElementById("scheduleChart").getContext("2d");
+  new Chart(scheduleCtx, {
+    type: "bar",
+    data: {
+      labels: weekdays,
+      datasets: [{
+        label: "Scheduled Tasks",
+        data: scheduleChartData,
+        backgroundColor: "#f39c12"
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true } }
+    }
+  });
+
+  // ==== Notes Overview Chart (Example) ====
   const notesCtx = document.getElementById("notesChart").getContext("2d");
   new Chart(notesCtx, {
     type: "line",
@@ -47,12 +98,8 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     options: {
       responsive: true,
-      plugins: {
-        legend: { display: true }
-      },
-      scales: {
-        y: { beginAtZero: true }
-      }
+      plugins: { legend: { display: true } },
+      scales: { y: { beginAtZero: true } }
     }
   });
 });
