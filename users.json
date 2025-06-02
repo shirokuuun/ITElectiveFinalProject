@@ -2,7 +2,7 @@
   "admin": {
     "password": "adminpass",
     "isAdmin": true,
-    "firstName": "Admin",
+    "firstName": "Rey Arnoco Puge",
     "email": "adminuser@gmail.com",
     "username": "admin",
     "profileImage": ""
@@ -39,7 +39,7 @@
     "profileImage": "",
     "isAdmin": false
   },
-"jhedf": {
+  "jhedf": {
     "firstName": "jhedf",
     "email": "Jhedf@gmail.com",
     "username": "jhedf",
